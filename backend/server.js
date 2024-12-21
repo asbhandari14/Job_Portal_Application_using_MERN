@@ -11,11 +11,13 @@ import jobRouter from "./routes/jobRouter.js";
 import applicationRouter from "./routes/applicationRouter.js";
 
 // import { newsLetterCron } from "./automation/newsLetterCron.js";
+import path from "path";
 
 
 const app = express();
 const URL = process.env.FRONTEND_URL;
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
+const __dirname = path.resolve();
 
 
 // CORS Middleware
@@ -41,8 +43,9 @@ app.use("/job", jobRouter);
 app.use("/application", applicationRouter);
 
 
-app.get("/", (req, res)=>{
-  res.send("Api is Working")
+app.use(express.static(path.join(__dirname, "/frontend/dist"))); 
+app.get("*", (req, res)=>{
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
 })
 
 // newsLetterCron()

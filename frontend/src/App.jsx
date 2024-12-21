@@ -12,7 +12,7 @@ import Register from "./pages/Register";
 
 
 const App = () => {
-  const backend_URL="http://localhost:8000";
+  const backend_URL="https://job-portal-application-using-mern.onrender.com";
 
   return (
     <>
